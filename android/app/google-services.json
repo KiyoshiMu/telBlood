@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "316971737506",
+    "firebase_url": "https://trans-falcon-246905.firebaseio.com",
+    "project_id": "trans-falcon-246905",
+    "storage_bucket": "trans-falcon-246905.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316971737506:android:83a4d0cd8888315537d2fb",
+        "android_client_info": {
+          "package_name": "com.telmed.telblood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316971737506-hqg1rlk7ndtj1kq0ekloi34v1q7petcd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV2nSTruRjXFAM3EaTF4Bj94UFjsk5V08"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316971737506-hqg1rlk7ndtj1kq0ekloi34v1q7petcd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
