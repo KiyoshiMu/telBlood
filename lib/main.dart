@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:telblood/pages/home.dart';
-import 'package:telblood/models/config.dart';
+import 'services/auth.dart';
+import 'services/sensors.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(GluApp());
+void main() => runApp(TelBloodApp());
 
-class GluApp extends StatelessWidget {
+class TelBloodApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Configs(
-      child: MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.red
-        ),
-        home: HomePage(),
-    ),
-  );
+  Widget build(BuildContext context) => MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (_) => UserRepository.instance()),
+            ChangeNotifierProxyProvider<UserRepository, Sensors>(
+              create: (_) => Sensors(),
+              update: (_, user, sensors) => Sensors(user: user),
+            )
+          ],
+          child: MaterialApp(
+              theme: ThemeData(primarySwatch: Colors.red), home: HomePage()));
 }

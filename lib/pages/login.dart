@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:telblood/services/provider_auth.dart';
+import 'package:telblood/services/auth.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       key: _key,
       appBar: AppBar(
-        title: Text("Demo"),
+        title: Text("TelBlood"),
       ),
       body: Form(
         key: _formKey,

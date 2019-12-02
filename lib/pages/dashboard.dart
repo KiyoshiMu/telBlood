@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:telblood/pages/detail.dart';
 import 'package:telblood/widgets/overview.dart';
+import 'package:telblood/services/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:telblood/widgets/userinfo.dart';
 
-
-class HomePage extends StatefulWidget {
+class Dashboard extends StatefulWidget {
+  final FirebaseUser user;
+  Dashboard({Key key, this.user}) : super(key: key);
   @override
-  _HomePageState createState() => _HomePageState();
+  _DashboardState createState() => _DashboardState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _DashboardState extends State<Dashboard> {
   final List<Widget> _view = [];
 
   void _updateItems(int oldIndex, int newIndex) {
@@ -32,11 +37,6 @@ class _HomePageState extends State<HomePage> {
         gestureDetector('Glucose'))
       ..add(
         gestureDetector('Blood Pressure'));
-      //   OverView(
-      //     key: UniqueKey(),
-      //     title: 'Blood Pressure', 
-      //     unit: 'mmHg', 
-      //     initVal: 100,))
       // ..add(
       //   OverView(
       //     key: UniqueKey(),
@@ -66,12 +66,21 @@ class _HomePageState extends State<HomePage> {
       title: Text('TelBlood'),
       centerTitle: true,
     ),
+    endDrawer: UserDrawer(user: widget.user,),
     body: SafeArea(
       child: ReorderableListView(
         children: _view,
         onReorder: (oldIndex, newIndex) {
           _updateItems(oldIndex, newIndex);
         }
+      ),
+    ),
+    bottomNavigationBar: BottomAppBar(
+      child: IconButton(
+        icon: Icon(
+          Icons.exit_to_app
+        ),
+        onPressed: () => Provider.of<UserRepository>(context).signOut(),
       ),
     ),
   );

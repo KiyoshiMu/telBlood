@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:telblood/models/sensor.dart';
-import 'package:telblood/models/config.dart';
+import 'package:telblood/services/sensors.dart';
 
 class OverView extends StatelessWidget {
   final String type;
@@ -17,25 +18,26 @@ class OverView extends StatelessWidget {
     Stream stream;
     switch (this.type) {
       case 'Glucose': {
-        title = Configs.of(context).gluConfig.title;
-        unit = Configs.of(context).gluConfig.unit;
-        stream = Configs.of(context).gluConfig.recorder.flowin;
+        title = Provider.of<Sensors>(context).gluConfig.title;
+        unit = Provider.of<Sensors>(context).gluConfig.unit;
+        stream = Provider.of<Sensors>(context).gluConfig.recorder.flowin;
       }
       break;
       default: {
-        title = Configs.of(context).bpConfig.title;
-        unit = Configs.of(context).bpConfig.unit;
-        stream = Configs.of(context).bpConfig.recorder.flowin;
+        title = Provider.of<Sensors>(context).bpConfig.title;
+        unit = Provider.of<Sensors>(context).bpConfig.unit;
+        stream = Provider.of<Sensors>(context).bpConfig.recorder.flowin;
       }
     }
     
-    return Padding(
+    return Container(
       padding: EdgeInsets.only(
         top: 20,
         // bottom: 15,
         left: 30,
         right: 30
         ),
+      width: MediaQuery.of(context).size.width * 0.95,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
